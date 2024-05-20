@@ -8,7 +8,7 @@ const Home = () => {
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["todo"],
     queryFn: () =>
-      fetch("https://jsonplaceholder.typicode.com/todos").then((res) =>
+      fetch("https://jsonplaceholder.typicode.com/posts").then((res) =>
         res.json()
       ),
   });
@@ -22,8 +22,15 @@ const Home = () => {
   }
 
   return (
-    <div>{data.map(todo => <div key={todo.id}>{todo.title}</div>)}</div>
-  )
+    <div>
+      {data.map((todo) => (
+        <div key={todo.id}>
+          <h1>ID: {todo.id}</h1>
+          <h1>Title: {todo.title}</h1>
+        </div>
+      ))}
+    </div>
+  );
 }
 
 export default Home
